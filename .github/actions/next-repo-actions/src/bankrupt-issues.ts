@@ -6,25 +6,37 @@ async function main() {
 
   const octokit = getOctokit(process.env.GITHUB_TOKEN)
   const { owner, repo } = context.repo
-  const query = `repo:${owner}/${repo} is:issue is:open created:2020-01-01..2020-12-31`
-  // let issue_number: number[] = []
+  // const query = `repo:${owner}/${repo} is:issue is:open created:2020-01-01..2020-12-31`
+  const commentBody = `
+    Hello everyone,
+    
+    Here is the [bug report](https://github.com/vercel/next.js/issues/new?assignees=&labels=bug&projects=&template=1.bug_report.yml).
+    
+    Thank you for your understanding and contributions!
+    
+    Best regards,
+    The Next.js Team, @samcx
+  `
+
+  // let issues: number[] = []
 
   try {
-    info(`Query: ${query}`) // Debugging: print the query
-    const { data } = await octokit.rest.search.issuesAndPullRequests({
-      q: query,
-      per_page: 50,
-    })
-
-    info(`Total # of issues = ${data.items.length}`)
-    info(`Response data: ${JSON.stringify(data, null, 2)}`)
-
-    // await octokit.rest.issues.createComment({
-    //   owner,
-    //   repo,
-    //   issue_number,
-    //   body: 'Hello world!',
+    // const { data } = await octokit.rest.search.issuesAndPullRequests({
+    //   q: query,
     // })
+
+    // info(`Total # of issues = ${data.items.length}`)
+
+    // data.items.forEach((issue) => {
+    //   issues.push(issue.number)
+    // })
+
+    await octokit.rest.issues.createComment({
+      owner,
+      repo,
+      issue_number: 66573,
+      body: commentBody,
+    })
   } catch (error) {
     setFailed(error)
   }
