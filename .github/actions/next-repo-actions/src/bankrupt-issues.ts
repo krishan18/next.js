@@ -8,14 +8,15 @@ async function main() {
   const { owner, repo } = context.repo
   // const query = `repo:${owner}/${repo} is:issue is:open created:2020-01-01..2020-12-31`
   const commentBody = `
-    Hello everyone,
-    
-    Here is the [bug report](https://github.com/vercel/next.js/issues/new?assignees=&labels=bug&projects=&template=1.bug_report.yml).
-    
-    Thank you for your understanding and contributions!
-    
-    Best regards,
-    The Next.js Team, @samcx
+
+Hello everyone,
+
+Here is the [bug report](https://github.com/vercel/next.js/issues/new?assignees=&labels=bug&projects=&template=1.bug_report.yml).
+
+Thank you for your understanding and contributions!
+
+Best regards,
+The Next.js Team, @samcx
   `
 
   // let issues: number[] = []
